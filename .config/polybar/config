@@ -1,0 +1,203 @@
+[bar/top]
+background = ${xrdb:background:#000}
+foreground = ${xrdb:foreground:#FFF}
+modules-left = greeter weather
+modules-right = packages cpu temperature audio battery date
+modules-center = title
+module-margin = 2
+font-0 = "Material Design Icons:size=14;2"
+font-1 = "JetBrains Mono"
+separator = •
+
+[bar/bottom]
+background = ${xrdb:background:#000}
+foreground = ${xrdb:foreground:#FFF}
+
+bottom=true
+modules-left = workspaces spotify
+modules-center = news
+module-margin=2
+font-0 = "Material Design Icons:size=14;2"
+font-1 = "JetBrains Mono"
+separator = •
+
+tray-position = right
+; If true, the bar will not shift its
+; contents when the tray changes
+tray-detached = false
+
+; Tray icon max size
+tray-maxsize = 16
+
+; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+tray-offset-x = 0
+tray-offset-y = 0
+
+; Pad the sides of each tray icon
+tray-padding = 0
+
+; Scale factor for tray clients
+tray-scale = 1.0
+
+[module/greeter]
+type=custom/text
+content = Welcome 
+
+[module/date]
+type=internal/date
+interval = 1.0
+date = %d/%m/%Y
+time = %H:%M:%S
+label = %date% %time%
+format =  <label>
+
+[module/cpu]
+type=internal/cpu
+label =  %percentage%%
+
+[module/packages]
+type=custom/script
+exec=check-packages
+interval = 60
+
+[module/title]
+type = internal/xwindow
+[module/battery]
+type = internal/battery
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-charging = <ramp-capacity> <label-charging>
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = Charging %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = Discharging %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+label-full = Fully charged
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/temperature]
+type = internal/temperature
+label =  %temperature-c%
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/virtual/hwmon/hwmon4/temp1_input
+
+; Base temperature for where to start the ramp (in degrees celsius)
+; Default: 0
+base-temperature = 20
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+warn-temperature = 60
+
+[module/workspaces]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = true
+
+; Available tags:
+;   <label-monitor>
+;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+; Default: <label-state>
+format=<label-state>
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-active =" %name% "
+label-active-foreground = ${root.background}
+label-active-background = ${root.foreground}
+
+label-empty =" %name% "
+label-empty-foreground = ${root.foreground}
+label-empty-background = ${root.background}
+
+label-urgent = " %name% "
+label-urgent-foreground = ${root.foreground}
+label-urgent-background = #F00
+
+label-occupied = " %name% "
+label-occupied-foreground = ${root.foreground}
+label-occupied-background = #F00
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.config/polybar/scripts/spotify/spotify.py -f '{artist}: {song}'
+format-underline = #1db954
+[module/news]
+type = custom/script
+interval = 10 ; seconds
+exec = ~/.config/polybar/scripts/news/news.sh
+click-left = ~/.config/polybar/scripts/news/news.sh url
+; Unicode Character U+F09E (use Font Awesome)
+format-prefix = " "
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/weather/openweathermap-fullfeatured.sh
+interval = 600
+
+[module/audio]
+type = internal/pulseaudio
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+format-volume = <ramp-volume> <label-volume>
+label-muted =  Muted
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
