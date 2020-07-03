@@ -1,1 +1,11 @@
-.config/polybar/scripts/news/obj
+.config/**
+!.config/i3
+!.config/polybar
+\!.config/kitty/**
+!.config/rofi/*
+!.config/owo
+!.config/gtk-*
+!.config/fontconfig
+
+.local/**
+!.local/fonts/**

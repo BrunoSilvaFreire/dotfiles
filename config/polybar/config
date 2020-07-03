@@ -1,12 +1,12 @@
 [bar/top]
 background = ${xrdb:background:#000}
 foreground = ${xrdb:foreground:#FFF}
-modules-left = greeter weather
-modules-right = packages cpu temperature audio battery date
+modules-left = spotify
+modules-right = audio battery date
 modules-center = title
 module-margin = 2
-font-0 = "Material Design Icons:size=14;2"
-font-1 = "JetBrains Mono"
+font-0 = "Material Design Icons:size=14;3"
+font-1 = "JetBrains Mono;2"
 separator = •
 
 [bar/bottom]
@@ -14,11 +14,11 @@ background = ${xrdb:background:#000}
 foreground = ${xrdb:foreground:#FFF}
 
 bottom=true
-modules-left = workspaces spotify
-modules-center = news
+modules-left = workspaces weather
+modules-center = memory cpu temperature
 module-margin=2
-font-0 = "Material Design Icons:size=14;2"
-font-1 = "JetBrains Mono"
+font-0 = "Material Design Icons:size=14;3"
+font-1 = "JetBrains Mono;2"
 separator = •
 
 tray-position = right
@@ -27,21 +27,57 @@ tray-position = right
 tray-detached = false
 
 ; Tray icon max size
-tray-maxsize = 16
+tray-maxsize = 64
 
 ; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 tray-offset-x = 0
 tray-offset-y = 0
 
 ; Pad the sides of each tray icon
-tray-padding = 0
-
-; Scale factor for tray clients
+tray-padding = 4
 tray-scale = 1.0
 
 [module/greeter]
 type=custom/text
 content = Welcome 
+
+[module/memory]
+
+format = <label>
+type=internal/memory
+label = 󰍛 %mb_used% / %mb_total%
+interval = 3
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 50
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+; Only applies if <ramp-used> is used
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
 
 [module/date]
 type=internal/date
@@ -49,11 +85,11 @@ interval = 1.0
 date = %d/%m/%Y
 time = %H:%M:%S
 label = %date% %time%
-format =  <label>
+format = 󰥔 <label>
 
 [module/cpu]
 type=internal/cpu
-label =  %percentage%%
+label = 󰻠 %percentage%%
 
 [module/packages]
 type=custom/script
@@ -68,20 +104,20 @@ type = internal/battery
 full-at = 99
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-charging = <ramp-capacity> <label-charging>
+format-charging = 󰂄 <label-charging>
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
 ;   %percentage_raw%
 ;   %time%
 ;   %consumption% (shows current charge rate in watts)
-label-charging = Charging %percentage%%
+label-charging = %percentage%%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
 ;   %percentage_raw%
 ;   %time%
 ;   %consumption% (shows current discharge rate in watts)
-label-discharging = Discharging %percentage%%
+label-discharging = %percentage%%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -92,15 +128,17 @@ label-full = Fully charged
 battery = BAT0
 adapter = ADP1
 poll-interval = 5
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 󰂃
+ramp-capacity-1 = 󰁻
+ramp-capacity-2 = 󰁾
+ramp-capacity-3 = 󰂀
+ramp-capacity-4 = 󰁹
 
 [module/temperature]
 type = internal/temperature
-label =  %temperature-c%
+label = 󰏈 %temperature-c%
+label-warn-foreground = #ff4040
+label-warn = 󰀨 %temperature-c%
 ; Seconds to sleep between updates
 ; Default: 1
 interval = 0.5
@@ -169,18 +207,17 @@ label-occupied-foreground = ${root.foreground}
 label-occupied-background = #F00
 [module/spotify]
 type = custom/script
-interval = 1
+interval = 1m
 format-prefix = " "
 format = <label>
-exec = python ~/.config/polybar/scripts/spotify/spotify.py -f '{artist}: {song}'
+exec = python ~/.config/polybar/scripts/spotify/spotify.py -f '󰎆 {artist}: {song}'
 format-underline = #1db954
 [module/news]
 type = custom/script
 interval = 10 ; seconds
 exec = ~/.config/polybar/scripts/news/news.sh
 click-left = ~/.config/polybar/scripts/news/news.sh url
-; Unicode Character U+F09E (use Font Awesome)
-format-prefix = " "
+format-prefix = "󰎕 "
 
 [module/weather]
 type = custom/script
@@ -194,10 +231,10 @@ type = internal/pulseaudio
 ; Default: true
 use-ui-max = true
 format-volume = <ramp-volume> <label-volume>
-label-muted =  Muted
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+label-muted = 󰝟
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
 ; Interval for volume increase/decrease (in percent points)
 ; Default: 5
 interval = 5

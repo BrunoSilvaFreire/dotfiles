@@ -2,17 +2,17 @@
 
 get_icon() {
     case $1 in
-        01d) icon="";;
-        01n) icon="";;
-        02*) icon="";;
-        03*) icon="";;
-        04*) icon="";;
-        09*) icon="";;
-        10*) icon="";;
-        11*) icon="";;
-        13*) icon="";;
-        50d) icon="";;
-        50n) icon="";;
+        01d) icon="󰖙";;
+        01n) icon="󰖔";;
+        02d) icon="󰖕";;
+        02n) icon="󰼱";;
+        03*) icon="󰖐";;
+        04*) icon="󰖐";;
+        09*) icon="󰖖";;
+        10*) icon="󰖗";;
+        11*) icon="󰖗";;
+        13*) icon="󰖓";;
+        50*) icon="󰖘";;
         *) icon="?";
     esac
 
@@ -53,15 +53,7 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
     forecast_icon=$(echo "$forecast" | jq -r ".list[].weather[0].icon")
 
 
-    # if [ "$current_temp" -gt "$forecast_temp" ]; then
-    #     trend=""
-    # elif [ "$forecast_temp" -gt "$current_temp" ]; then
-    #     trend=""
-    # else
-    #     trend=""
-    # fi
-
-    trend=""
+    trend="󰔴"
     sun_rise=$(echo "$current" | jq ".sys.sunrise")
     sun_set=$(echo "$current" | jq ".sys.sunset")
     now=$(date +%s)
@@ -74,5 +66,5 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
         daytime=" $(get_duration "$((sun_rise-now))")"
     fi
 
-    echo " $CITY  •  $(get_icon "$current_icon") $current_temp$SYMBOL $trend $(get_icon "$forecast_icon") $forecast_temp$SYMBOL"
+    echo "󰍎 $CITY  •  $(get_icon "$current_icon") $current_temp$SYMBOL $trend $(get_icon "$forecast_icon") $forecast_temp$SYMBOL"
 fi
