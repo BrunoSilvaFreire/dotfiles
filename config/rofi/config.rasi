@@ -4,10 +4,11 @@
  */
 
  configuration {
-	theme: "~/.cache/wal/colors-rofi-dark.rasi";
 	display-drun:    "Activate";
 	display-run:     "Execute";
 	display-window:  "Window";
 	show-icons:      true;
 	sidebar-mode:    true;
 }
+
+@theme "~/.cache/wal/colors-rofi-dark.rasi"

@@ -1,0 +1,3 @@
+#!/bin/bash
+man -H$BROWSER $@
+i3-msg "[window_role=\"browser\"] focus"

@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/brunorbsf/MiscProjects/dotfiles/astronaut.jpg"
+let background = "#0F161E"
+let foreground = "#86e3c2"
+let cursor     = "#86e3c2"
+
+" Colors
+let color0  = "#0F161E"
+let color1  = "#32504E"
+let color2  = "#595A58"
+let color3  = "#BC4F4F"
+let color4  = "#28AC56"
+let color5  = "#B8A73A"
+let color6  = "#953D9E"
+let color7  = "#86e3c2"
+let color8  = "#5d9e87"
+let color9  = "#32504E"
+let color10 = "#595A58"
+let color11 = "#BC4F4F"
+let color12 = "#28AC56"
+let color13 = "#B8A73A"
+let color14 = "#953D9E"
+let color15 = "#86e3c2"

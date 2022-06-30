@@ -1,0 +1,2 @@
+#!/bin/sh
+xrandr --output DP-1 --pos 0x694 --rotate normal --output DP-2 --off --output HDMI-1 --mode 2560x1080 --pos 1920x0 --rate 165 --rotate right --output DP-3 --off

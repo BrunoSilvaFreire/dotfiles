@@ -205,6 +205,7 @@ label-urgent-background = #F00
 label-occupied = " %name% "
 label-occupied-foreground = ${root.foreground}
 label-occupied-background = #F00
+
 [module/spotify]
 type = custom/script
 interval = 1m
@@ -212,6 +213,7 @@ format-prefix = " "
 format = <label>
 exec = python ~/.config/polybar/scripts/spotify/spotify.py -f '󰎆 {artist}: {song}'
 format-underline = #1db954
+
 [module/news]
 type = custom/script
 interval = 10 ; seconds
