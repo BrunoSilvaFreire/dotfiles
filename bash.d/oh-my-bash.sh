@@ -1,5 +1,5 @@
 export OSH="$HOME/.oh-my-bash"
-OSH_THEME="powerline"
+OSH_THEME="minimal"
 OMB_USE_SUDO=true
 
 # Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)

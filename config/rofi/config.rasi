@@ -10,5 +10,3 @@
 	show-icons:      true;
 	sidebar-mode:    true;
 }
-
-@theme "~/.cache/wal/colors-rofi-dark.rasi"
