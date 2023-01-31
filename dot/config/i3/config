@@ -201,6 +201,6 @@ bindsym $mod+r mode "resize"
 
 exec --no-startup-id picom --experimental-backends
 exec --no-startup-id ~/MiscProjects/dotfiles/config/i3/autostart.sh
-exec --no-startup-id polybar top &
-exec --no-startup-id polybar bottom &
+exec --no-startup-id polybar -r top &
+exec --no-startup-id polybar -r bottom &
 exec feh --bg-scale ~/MiscProjects/dotfiles/astronaut.jpg

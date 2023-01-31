@@ -12,10 +12,9 @@ separator = •
 [bar/bottom]
 background = ${xrdb:background:#000}
 foreground = ${xrdb:foreground:#FFF}
-
 bottom=true
 modules-left = workspaces weather
-modules-center = memory cpu temperature
+modules-center = memory cpu temperature wired-network-interface wired-network-ip wired-network-up wired-network-down
 module-margin=2
 font-0 = "Material Design Icons:size=14;3"
 font-1 = "JetBrains Mono;2"
@@ -90,6 +89,38 @@ format = 󰥔 <label>
 [module/cpu]
 type=internal/cpu
 label = 󰻠 %percentage%%
+
+[module/wired-network-interface]
+type = internal/network
+interface-type = wired
+accumulate-stats = true
+label-connected = 󱂇 %ifname%
+label-disconnected = not connected
+label-disconnected-foreground = #ff0000
+
+[module/wired-network-ip]
+type = internal/network
+interface-type = wired
+accumulate-stats = true
+label-connected = 󰩟 %local_ip%
+label-disconnected = not connected
+label-disconnected-foreground = #ff0000
+
+[module/wired-network-down]
+type = internal/network
+interface-type = wired
+accumulate-stats = true
+label-connected = 󰅢 %downspeed%
+label-disconnected = not connected
+label-disconnected-foreground = #ff0000
+
+[module/wired-network-up]
+type = internal/network
+interface-type = wired
+accumulate-stats = true
+label-connected = 󰅧 %upspeed%
+label-disconnected = not connected
+label-disconnected-foreground = #ff0000
 
 [module/packages]
 type=custom/script

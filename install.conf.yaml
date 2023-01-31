@@ -1,14 +1,14 @@
 - link:
-    ~/.config/fontconfig: config/fontconfig
-    ~/.config/gtk-2.0: config/gtk-2.0
-    ~/.config/gtk-3.0: config/gtk-3.0
-    ~/.config/gtk-4.0: config/gtk-4.0
-    ~/.config/i3: config/i3
-    ~/.config/owo: config/owo
-    ~/.config/kitty: config/kitty
-    ~/.config/polybar: config/polybar
-    ~/.config/rofi: config/rofi
-    ~/.config/picom.conf: config/picom.conf
-    ~/.bashrc: .bashrc
-    ~/.Xresources: cache/wal/colors.Xresources
-    ~/.xprofile: scripts/.xprofile
+    ~/.config/fontconfig: dot/config/fontconfig
+    ~/.config/gtk-2.0: dot/config/gtk-2.0
+    ~/.config/gtk-3.0: dot/config/gtk-3.0
+    ~/.config/gtk-4.0: dot/config/gtk-4.0
+    ~/.config/i3: dot/config/i3
+    ~/.config/owo: dot/config/owo
+    ~/.config/kitty: dot/config/kitty
+    ~/.config/polybar: dot/config/polybar
+    ~/.config/rofi: dot/config/rofi
+    ~/.config/picom.conf: dot/config/picom.conf
+    ~/.bashrc: dot/.bashrc
+    ~/.Xresources: dot/.Xresources
+    ~/.xprofile: dot/scripts/.xprofile
